@@ -1,0 +1,126 @@
+<!--<html>-->
+<!--<head>-->
+<!--<title>City Finder</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form>-->
+<!--    Enter A Utah City: <input type="text" id="cityField" value=""><br>-->
+<!--    Suggestion: <span id="txtHint">Empty</span>-->
+<!--    <input id="weatherButton" type="submit" value="Submit">-->
+<!--    </form>-->
+<!--    <p>City</p>-->
+<!--    <textarea id="displayCity">No City</textarea>-->
+<!--    <p>Current Weather</p>-->
+<!--    <div id="weather">No weather</div>-->
+<!--    <div id="map"></div>-->
+    
+    
+<!--    <script>-->
+<!--        var map;-->
+<!--        function initMap() {-->
+<!--            map = new google.maps.Map(document.getElementById('map'), {-->
+<!--                center: {lat: -34.397, lng: 150.644},-->
+<!--                zoom: 8-->
+<!--        });-->
+<!--      }-->
+<!--    </script>-->
+    
+<!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsbs47_fS7mnFviMlMfvpum7Jomro4cOI&callback=initMap"-->
+<!--        async defer></script>-->
+    
+<!--</body>-->
+
+<!--<script>-->
+<!--document.getElementById("cityField").addEventListener("keyup", function(event) {-->
+<!--    event.preventDefault();-->
+<!--    const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=" + document.getElementById("cityField").value;-->
+    
+<!--    fetch(url)-->
+<!--        .then(function(response) {-->
+<!--            return response.json();-->
+<!--        }).then(function(json) {-->
+<!--            console.log(json);-->
+<!--            console.log(json[0]);-->
+<!--            console.log("Got " + json[0].city);-->
+<!--            var everything;-->
+<!--            everything = "<ul>";-->
+<!--            for (let i = 0; i < json.length; i++) {-->
+<!--                everything += "<li> " + json[i].city;-->
+<!--            };-->
+<!--            everything += "</ul>";-->
+<!--            document.getElementById("txtHint").innerHTML = everything;-->
+<!--        });-->
+<!--});-->
+<!--</script>-->
+
+<!--</html>-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+      <form>-->
+        Enter A Utah City: <input type="text" id="cityField" value=""><br>
+        Suggestion: <span id="txtHint">Empty</span>
+        <input id="weatherButton" type="submit" value="Submit">
+        </form>
+        <p>City</p>
+        <textarea id="displayCity">No City</textarea>
+        <p>Current Weather</p>
+        <div id="weather">No weather</div>
+        <div id="map"></div>
+        
+    <script>
+    /*global fetch*/
+        document.getElementById("cityField").addEventListener("keyup", function(event) {
+            event.preventDefault();
+            const url = "http://bioresearch.byu.edu/cs260/jquery/getcity.cgi?q=" + document.getElementById("cityField").value;   
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                }).then(function(json) {
+                    console.log(json);
+                    console.log(json[0]);
+                    console.log("Got " + json[0].city);
+                    var everything;
+                    everything = "<ul>";
+                    for (let i = 0; i < json.length; i++) {
+                        everything += "<li> " + json[i].city;
+                    };
+                    everything += "</ul>";
+                    document.getElementById("txtHint").innerHTML = everything;
+                });
+        });
+    </script>
+      
+    <script>
+            /*global google*/
+              let map;
+              function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: -34.397, lng: 150.644},
+                  zoom: 8
+                });
+              }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsbs47_fS7mnFviMlMfvpum7Jomro4cOI&callback=initMap"async defer></script>
+    
+  </body>
+</html>
